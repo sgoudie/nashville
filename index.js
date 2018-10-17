@@ -36,13 +36,21 @@ const getScale = ({ root, scaleType }) => {
 };
 
 const getChord = ({ scale, number }) => {
-  let type = 'maj';
+  const chordRoot = scale[number[0] - 1];
+
+  let type = '';
+
   if (number.includes('-')) {
-    type = 'min';
+    type = 'm'; // 'm' for minor
   }
-  const scaleNumber = number.replace('-', '');
-  const chordRoot = scale[scaleNumber - 1];
-  console.log(number);
+
+  // Support for slash chords
+  if (number.includes('/')) {
+    const bassNumber = number[number.indexOf('/') + 1];
+    const bass = scale[bassNumber - 1];
+    return `${chordRoot}${type}/${bass}`;
+  }
+
   return `${chordRoot}${type}`;
 };
 
@@ -64,8 +72,8 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 };
 
 const result = parseSequence({
-  sequence: ['6-', '4', '2-', '1'],
-  root: 'G',
+  sequence: ['6-', '5/7', '4', '2-', '1'],
+  root: 'F',
   scaleType: 'major'
 });
 
