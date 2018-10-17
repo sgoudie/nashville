@@ -7,11 +7,23 @@ const noteLabels = {
 /* How the scale is constructed:
   - Whole tone: 2
   - Half tone: 1 */
-const scaleIntervals = {
-  major: [2, 2, 1, 2, 2, 2, 1],
-  minor: [2, 1, 2, 2, 1, 2, 2],
-  ionian: [2, 2, 1, 2, 2, 2, 1],
-  aeolian: [2, 1, 2, 2, 1, 2, 2]
+const scaleLib = {
+  major: {
+    intervals: [2, 2, 1, 2, 2, 2, 1],
+    triads: ['maj', 'min', 'min', 'maj', 'maj', 'min', 'dim'],
+  },
+  minor: {
+    intervals: [2, 1, 2, 2, 1, 2, 2],
+    triads: ['min', 'dim', 'maj', 'min', 'min', 'maj', 'maj'],
+  },
+  ionian: {
+    intervals: [2, 2, 1, 2, 2, 2, 1],
+    triads: ['maj', 'min', 'min', 'maj', 'maj', 'min', 'dim'],
+  },
+  aeolian: {
+    intervals: [2, 1, 2, 2, 1, 2, 2],
+    triads: ['min', 'dim', 'maj', 'min', 'min', 'maj', 'maj'],
+  },
 };
 
 /* Check whether the key uses sharps and flats */
@@ -21,7 +33,7 @@ const flatCheck = (root) => {
 
 const getScale = ({ root, scaleType }) => {
   const notes = flatCheck(root) ? noteLabels.flats : noteLabels.sharps;
-  const intervals = scaleIntervals[scaleType];
+  const { intervals } = scaleLib[scaleType];
   const scale = [root];
   let lastIndex = notes.indexOf(root);
 
@@ -35,19 +47,24 @@ const getScale = ({ root, scaleType }) => {
   return scale;
 };
 
-const getChord = ({ scale, number }) => {
-  const chordRoot = scale[number[0] - 1];
+const getChord = ({ scale, degree, scaleType }) => {
+  const { triads } = scaleLib[scaleType];
+  const chordRoot = scale[degree[0] - 1];
 
   let type = '';
 
-  if (number.includes('-')) {
+  if (degree.includes('-') || triads[degree[0] - 1] === 'min') {
     type = 'm'; // 'm' for minor
   }
 
+  if (degree.includes('o') || triads[degree[0] - 1] === 'dim') {
+    type = 'dim'; // 'dim' for diminished
+  }
+
   // Support for slash chords
-  if (number.includes('/')) {
-    const bassNumber = number[number.indexOf('/') + 1];
-    const bass = scale[bassNumber - 1];
+  if (degree.includes('/')) {
+    const bassdegree = degree[degree.indexOf('/') + 1];
+    const bass = scale[bassdegree - 1];
     return `${chordRoot}${type}/${bass}`;
   }
 
@@ -58,8 +75,8 @@ const parseSequence = ({ sequence, root, scaleType }) => {
   const chords = [];
   const scale = getScale({ root, scaleType });
 
-  sequence.forEach((number) => {
-    const chord = getChord({ scale, number });
+  sequence.forEach((degree) => {
+    const chord = getChord({ scale, degree, scaleType });
     chords.push(chord);
   });
 
@@ -72,8 +89,8 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 };
 
 const result = parseSequence({
-  sequence: ['6-', '5/7', '4', '2-', '1'],
-  root: 'F',
+  sequence: ['6', '5/7', '4', '2', '1', '7/2'],
+  root: 'D',
   scaleType: 'major'
 });
 
