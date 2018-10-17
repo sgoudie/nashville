@@ -17,7 +17,7 @@ const scaleIntervals = {
 /* Check whether the key uses sharps and flats */
 const flatCheck = (root) => {
   return root === 'F' || root.includes('b');
-}
+};
 
 const getScale = ({ root, scaleType }) => {
   const notes = flatCheck(root) ? noteLabels.flats : noteLabels.sharps;
@@ -35,10 +35,25 @@ const getScale = ({ root, scaleType }) => {
   return scale;
 };
 
+const getChord = ({ scale, number }) => {
+  let type = 'maj';
+  if (number.includes('-')) {
+    type = 'min';
+  }
+  const scaleNumber = number.replace('-', '');
+  const chordRoot = scale[scaleNumber - 1];
+  console.log(number);
+  return `${chordRoot}${type}`;
+};
+
 const parseSequence = ({ sequence, root, scaleType }) => {
   const chords = [];
   const scale = getScale({ root, scaleType });
-  sequence.forEach((chord) => {chords.push(scale[chord - 1])});
+
+  sequence.forEach((number) => {
+    const chord = getChord({ scale, number });
+    chords.push(chord);
+  });
 
   return {
     key: `${root} ${scaleType}`,
@@ -49,9 +64,9 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 };
 
 const result = parseSequence({
-  sequence: [6, 4, 1, 2],
-  root: 'C',
-  scaleType: 'ionian'
+  sequence: ['6-', '4', '2-', '1'],
+  root: 'G',
+  scaleType: 'major'
 });
 
 console.log(result);
