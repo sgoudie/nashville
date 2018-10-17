@@ -20,6 +20,10 @@ const scaleLib = {
     intervals: [2, 2, 1, 2, 2, 2, 1],
     triads: ['maj', 'min', 'min', 'maj', 'maj', 'min', 'dim'],
   },
+  dorian: {
+    intervals: [2, 1, 2, 2, 2, 1, 2],
+    triads: ['min', 'min', 'maj', 'maj', 'min', 'dim', 'maj'],
+  },
   aeolian: {
     intervals: [2, 1, 2, 2, 1, 2, 2],
     triads: ['min', 'dim', 'maj', 'min', 'min', 'maj', 'maj'],
@@ -89,8 +93,8 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 };
 
 const result = parseSequence({
-  sequence: ['6', '5/7', '4', '2', '1', '7/2'],
-  root: 'D',
+  sequence: ['6', '5/7', '4', '2', '1', '7'],
+  root: 'C',
   scaleType: 'major'
 });
 
