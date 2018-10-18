@@ -6,6 +6,12 @@
   "license": "MIT",
   "repository": "sgoudie/nashville",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "nashville",
     "nns",
@@ -13,5 +19,9 @@
     "parse",
     "music",
     "notation"
-  ]
+  ],
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
 }
