@@ -24,13 +24,13 @@ var nashville = require('nashville');
 ```js
 import nashville from 'nashville';
 
-// nashville(root, scaleType, sequence)
+// nashville(root, scaleType, degrees)
 nashville('G', 'major', ['1', '5/7', '4', '2', '1', '7']);
 /*
 => {
   key: 'G major',
   scale: [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ],
-  sequence: [ '1', '5/7', '4', '2', '1', '7' ],
+  degrees: [ '1', '5/7', '4', '2', '1', '7' ],
   chords: [ 'G', 'D/F#', 'C', 'Am', 'G', 'F#dim' ]
 }
 */
@@ -40,8 +40,19 @@ nashville('Eb', 'mixolydian', ['1', '5/7', '4', '2', '1', '7']);
 => {
   key: 'Eb mixolydian',
   scale: [ 'Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb' ],
-  sequence: [ '1', '5/7', '4', '2', '1', '7' ],
+  degrees: [ '1', '5/7', '4', '2', '1', '7' ],
   chords: [ 'Eb', 'Bbm/Db', 'Ab', 'Fm', 'Eb', 'Db' ]
+}
+*/
+
+// It works for single degrees too
+nashville('G', 'major', '5');
+/*
+=> {
+  key: 'G major',
+  scale: [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ],
+  degrees: '5',
+  chords: [ 'D' ]
 }
 */
 ```

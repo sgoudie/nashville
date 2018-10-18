@@ -46,6 +46,8 @@ const scaleLib = {
   }
 };
 
+const isArray = (data) => Object.prototype.toString.call(data) == '[object Array]';
+
 /* Check whether the key uses sharps and flats */
 const flatCheck = (root) => {
   return root === 'F' || root.includes('b');
@@ -91,24 +93,30 @@ const getChord = ({ scale, degree, scaleType }) => {
   return `${chordRoot}${type}`;
 };
 
-const parseSequence = ({ root, scaleType, sequence }) => {
+const parseDegrees = ({ root, scaleType, degrees }) => {
   const chords = [];
   const scale = getScale({ root, scaleType });
 
-  sequence.forEach((degree) => {
+  if (isArray(degrees)) {
+    degrees.forEach((degree) => {
+      const chord = getChord({ scale, degree, scaleType });
+      chords.push(chord);
+    });
+  } else {
+    const degree = degrees; // If it's not an array, it's a single degree.
     const chord = getChord({ scale, degree, scaleType });
     chords.push(chord);
-  });
+  }
 
   return {
     key: `${root} ${scaleType}`,
     scale,
-    sequence,
+    degrees,
     chords,
   };
 };
 
 
-module.exports = function nashville(root, scaleType, sequence) {
-  return parseSequence({ root, scaleType, sequence });
+module.exports = function nashville(root, scaleType, degrees) {
+  return parseDegrees({ root, scaleType, degrees });
 };

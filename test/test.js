@@ -7,7 +7,7 @@ describe('getSingleChord', function () {
     // 1. ARRANGE
     const root = 'G'
     const scaleType = 'major';
-    const degree = ['5'];
+    const degree = '5';
     const chord = 'D'; // 5th degree of the G Major scale
 
     // 2. ACT
@@ -25,11 +25,11 @@ describe('getChordSequence', function () {
     // 1. ARRANGE
     const root = 'G'
     const scaleType = 'mixolydian';
-    const sequence = [ '1', '5/7', '4', '2', '1', '7' ];
+    const degrees = [ '1', '5/7', '4', '2', '1', '7' ];
     const expectedChords = [ 'G', 'Dm/F', 'C', 'Am', 'G', 'F' ];
 
     // 2. ACT
-    const { chords } = nashville(root, scaleType, sequence);
+    const { chords } = nashville(root, scaleType, degrees);
 
     // 3. ASSERT
     expect(chords).to.be.an('array').and.to.eql(expectedChords);
