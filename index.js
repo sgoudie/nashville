@@ -91,7 +91,7 @@ const getChord = ({ scale, degree, scaleType }) => {
   return `${chordRoot}${type}`;
 };
 
-const parseSequence = ({ sequence, root, scaleType }) => {
+const parseSequence = ({ root, scaleType, sequence }) => {
   const chords = [];
   const scale = getScale({ root, scaleType });
 
@@ -108,10 +108,7 @@ const parseSequence = ({ sequence, root, scaleType }) => {
   };
 };
 
-const result = parseSequence({
-  sequence: ['1', '5/7', '4', '2', '1', '7'],
-  root: 'G',
-  scaleType: 'major'
-});
 
-console.log(result);
+module.exports = function nashville(root, scaleType, sequence) {
+  return parseSequence({ root, scaleType, sequence });
+};

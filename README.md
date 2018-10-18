@@ -1,6 +1,8 @@
 # Nashville Parser 🎸
 
-A work in progress. Parsing the Nashville Number System (NNS) to chords based on the key.
+*IN DEVELOPMENT*
+
+Parsing the Nashville Number System (NNS) to chords based on the key.
 
 - Enter your root and scale / mode
 - Enter your sequence of chords as comma separated NNS degrees
@@ -22,5 +24,5 @@ Major, minor, and diminished chords are set by the key, but can be overridden wi
 - `2o` would produce a diminished second chord
 
 ## Keys:
-- major + minor keys
+- major + minor scales
 - modes (ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian)
