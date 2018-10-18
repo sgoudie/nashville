@@ -1,20 +1,19 @@
-var expect = require('chai').expect;
-var flatCheck = require('../lib/flat-check');
+const flatCheck = require('../lib/flat-check');
 
-describe('flatCheckF', function () {
-  it('should return true for F', function () {
-    expect(flatCheck('F')).to.be.true;
+describe('flatCheck', () => {
+  test('is true for F', () => {
+    expect(flatCheck('F')).toBe(true);
   });
-});
 
-describe('flatCheckEb', function () {
-  it('should return true for Eb', function () {
-    expect(flatCheck('Eb')).to.be.true;
+  test('is true for Eb', () => {
+    expect(flatCheck('Eb')).toBe(true);
   });
-});
 
-describe('flatCheckC#', function () {
-  it('should return false for C#', function () {
-    expect(flatCheck('C#')).to.be.false;
+  test('is false for D', () => {
+    expect(flatCheck('D')).toBe(false);
+  });
+
+  test('is false for G#', () => {
+    expect(flatCheck('G#')).toBe(false);
   });
 });

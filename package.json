@@ -10,7 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "prepublish": "npm run test"
   },
   "keywords": [
@@ -22,7 +22,6 @@
     "notation"
   ],
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "jest": "^23.6.0"
   }
 }
