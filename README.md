@@ -67,3 +67,11 @@ Major, minor, and diminished chords are set by the key, but can be overridden wi
 ### Scale Types:
 - scales: `major` and `minor`
 - modes: `ionian`, `dorian`, `phrygian`, `lydian`, `mixolydian`, `aeolian`, and `locrian`
+
+## To-do list:
+- [] Add support for accidentals
+- [] Add support for 7ths
+- [] Add support for extensions / additions (9, sus2, 13 etc);
+
+- [] Add type errors
+- [] Add a minified version
