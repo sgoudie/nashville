@@ -109,9 +109,9 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 };
 
 const result = parseSequence({
-  sequence: ['6', '5/7', '4', '2', '1', '7'],
+  sequence: ['1', '5/7', '4', '2', '1', '7'],
   root: 'G',
-  scaleType: 'mixolydian'
+  scaleType: 'major'
 });
 
 console.log(result);
