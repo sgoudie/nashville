@@ -2,6 +2,16 @@
   "name": "nashville",
   "version": "0.1.0",
   "description": "Nashville Number System (NNS) parsed to chords",
+  "author": "Samuel Goudie <hello@sgoudie.com>",
+  "license": "MIT",
+  "repository": "sgoudie/nashville",
   "main": "index.js",
-  "author": "Samuel Goudie <hello@sgoudie.com>"
+  "keywords": [
+    "nashville",
+    "nns",
+    "chords",
+    "parse",
+    "music",
+    "notation"
+  ]
 }
