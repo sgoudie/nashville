@@ -24,10 +24,26 @@ const scaleLib = {
     intervals: [2, 1, 2, 2, 2, 1, 2],
     triads: ['min', 'min', 'maj', 'maj', 'min', 'dim', 'maj'],
   },
+  phrygian: {
+    intervals: [1, 2, 2, 2, 1, 2, 2],
+    triads: ['min', 'maj', 'maj', 'min', 'dim', 'maj', 'min'],
+  },
+  lydian: {
+    intervals: [2, 2, 2, 1, 2, 2, 1],
+    triads: ['maj', 'maj', 'min', 'dim', 'maj', 'min', 'min'],
+  },
+  mixolydian: {
+    intervals: [2, 2, 1, 2, 2, 1, 2],
+    triads: ['maj', 'min', 'dim', 'maj', 'min', 'min', 'maj'],
+  },
   aeolian: {
     intervals: [2, 1, 2, 2, 1, 2, 2],
     triads: ['min', 'dim', 'maj', 'min', 'min', 'maj', 'maj'],
   },
+  locrian: {
+    intervals: [1, 2, 2, 1, 2, 2, 2],
+    triads: ['dim', 'maj', 'min', 'min', 'maj', 'maj', 'min'],
+  }
 };
 
 /* Check whether the key uses sharps and flats */
@@ -65,7 +81,7 @@ const getChord = ({ scale, degree, scaleType }) => {
     type = 'dim'; // 'dim' for diminished
   }
 
-  // Support for slash chords
+  // Support for slas1, chords
   if (degree.includes('/')) {
     const bassdegree = degree[degree.indexOf('/') + 1];
     const bass = scale[bassdegree - 1];
@@ -94,8 +110,8 @@ const parseSequence = ({ sequence, root, scaleType }) => {
 
 const result = parseSequence({
   sequence: ['6', '5/7', '4', '2', '1', '7'],
-  root: 'C',
-  scaleType: 'major'
+  root: 'G',
+  scaleType: 'mixolydian'
 });
 
 console.log(result);
