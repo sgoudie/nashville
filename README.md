@@ -72,6 +72,3 @@ Major, minor, and diminished chords are set by the key, but can be overridden wi
 - Add support for accidentals
 - Add support for 7ths
 - Add support for extensions / additions (9, sus2, 13 etc);
-
-- Add type errors
-- Add a minified version
