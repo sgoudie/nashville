@@ -4,7 +4,7 @@ A work in progress. Parsing the Nashville Number System (NNS) to chords based on
 
 - Enter your root and scale / mode
 - Enter your sequence of chords as comma separated NNS degrees
-- `key`, `scale`, `sequence`, and `chords are returned`
+- `key`, `scale`, `sequence`, and `chords` are returned
 
 So root `G` with a `major` scale and the sequence `['1', '5/7', '4', '2', '1', '7']` would return:
 
