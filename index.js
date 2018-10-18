@@ -70,27 +70,29 @@ const getScale = ({ root, scaleType }) => {
 };
 
 const getChord = ({ scale, degree, scaleType }) => {
+  if (typeof degree !== 'string') throw new TypeError(`Invalid degree: ${degree} is a ${typeof degree} - must be a string`);
+
   const { triads } = scaleLib[scaleType];
   const chordRoot = scale[degree[0] - 1];
 
-  let type = '';
+  let chordType = '';
 
   if (degree.includes('-') || triads[degree[0] - 1] === 'min') {
-    type = 'm'; // 'm' for minor
+    chordType = 'm'; // 'm' for minor
   }
 
   if (degree.includes('o') || triads[degree[0] - 1] === 'dim') {
-    type = 'dim'; // 'dim' for diminished
+    chordType = 'dim'; // 'dim' for diminished
   }
 
   // Support for slas1, chords
   if (degree.includes('/')) {
     const bassdegree = degree[degree.indexOf('/') + 1];
     const bass = scale[bassdegree - 1];
-    return `${chordRoot}${type}/${bass}`;
+    return `${chordRoot}${chordType}/${bass}`;
   }
 
-  return `${chordRoot}${type}`;
+  return `${chordRoot}${chordType}`;
 };
 
 const parseDegrees = ({ root, scaleType, degrees }) => {
@@ -118,5 +120,8 @@ const parseDegrees = ({ root, scaleType, degrees }) => {
 
 
 module.exports = function nashville(root, scaleType, degrees) {
+  if (typeof root !== 'string') throw new TypeError('Root must be a string - e.g. "G#"');
+  if (typeof scaleType !== 'string') throw new TypeError('Scale type must be a string - e.g. "major"');
+
   return parseDegrees({ root, scaleType, degrees });
 };
