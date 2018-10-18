@@ -1,4 +1,4 @@
-const flatCheck = require('../lib/flat-check');
+const flatCheck = require('../src/lib/flat-check');
 
 describe('flatCheck', () => {
   test('is true for F', () => {
