@@ -10,7 +10,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "prepublish": "npm run test"
   },
   "keywords": [
     "nashville",
