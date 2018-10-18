@@ -1,8 +1,8 @@
-# Nashville Parser 🎸
+# Nashville 🎸
 
 *IN DEVELOPMENT*
 
-Parsing the Nashville Number System (NNS) to chords based on the key.
+A simple function that parses the Nashville Number System (NNS) to chords based on the key.
 
 - Enter your root and scale / mode
 - Enter your sequence of chords as comma separated NNS degrees

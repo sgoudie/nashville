@@ -1,7 +1,7 @@
 {
-  "name": "nashville-parser",
+  "name": "nashville",
   "version": "0.1.0",
-  "description": "Parse Nashville Number System (NNS) chords",
+  "description": "Nashville Number System (NNS) parsed to chords",
   "main": "index.js",
   "author": "Samuel Goudie <hello@sgoudie.com>"
 }
