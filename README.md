@@ -77,6 +77,9 @@ Major, minor, and diminished chords are set by the key, but can be overridden wi
 - modes: `ionian`, `dorian`, `phrygian`, `lydian`, `mixolydian`, `aeolian`, and `locrian`
 
 ## To-do list:
-- Add support for accidentals
-- Add support for 7ths
-- Add support for extensions / additions (9, sus2, 13 etc);
+- Accidentals (`b, bb, #, ##`)
+- 7ths
+- Extensions / additions (`9, sus2, 13` etc);
+- Capo
+- Degree from chord
+- Workout triads from scale
