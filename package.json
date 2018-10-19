@@ -1,6 +1,6 @@
 {
   "name": "nashville",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Nashville Number System (NNS) parsed to chords",
   "author": "Samuel Goudie <hello@sgoudie.com>",
   "license": "MIT",
