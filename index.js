@@ -5,15 +5,12 @@ const isArray = require('./lib/is-array');
 class Nashville {
   constructor(key) {
     this.key = key;
-    this.keyRoot = key.split(' ')[0];
-    this.keyType = key.split(' ')[1];
-    this.keyScale = this.getScale();
   }
 
   set key(value) {
     this._key = value;
     this.keyRoot = value.split(' ')[0];
-    this.keyType = value.split(' ')[1];
+    this.keyType = value.split(' ')[1] || 'major';
     this.keyScale = this.getScale();
   }
 
@@ -25,6 +22,10 @@ class Nashville {
     /* Check whether the key uses sharps and flats */
     const root = this.keyRoot;
     return root === 'F' || root.includes('b');
+  }
+
+  keyChange(key) {
+    this.key = key;
   }
 
   getScale() {

@@ -61,7 +61,7 @@ const song = new Nashville('G major');
 
 song.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
 
-song.key('Eb mixolydian'); // updates key, keyRoot, keyType, and keyScale
+song.keyChange('Eb mixolydian'); // updates key, keyRoot, keyType, and keyScale
 song.getChords([1, 4, 5, 1]); // => [ 'Eb', 'Ab', 'Bbm', 'Eb' ]
 ```
 
