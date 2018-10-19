@@ -20,4 +20,9 @@ describe('getChord', () => {
     const song = new Nashville('Eb mixolydian');
     expect(song.getChord('5/7')).toBe('Bbm/Db');
   });
+
+  test('no chord found returns "-"', () => {
+    const song = new Nashville('G major');
+    expect(song.getChord('broken string')).toBe('-');
+  });
 });

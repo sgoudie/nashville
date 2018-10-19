@@ -66,7 +66,7 @@ class Nashville {
       return `${chordRoot}${chordType}/${bass}`;
     }
 
-    return `${chordRoot}${chordType}`;
+    return chordRoot ? `${chordRoot}${chordType}` : '-';
   }
 
   getChords(sequence) {
