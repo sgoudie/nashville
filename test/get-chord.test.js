@@ -25,4 +25,9 @@ describe('getChord', () => {
     const song = new Nashville('G major');
     expect(song.getChord('broken string')).toBe('-');
   });
+
+  test('5/ no bass', () => {
+    const song = new Nashville('G major');
+    expect(song.getChord('5/')).toBe('D/-');
+  });
 });

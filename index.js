@@ -62,7 +62,7 @@ class Nashville {
     // Support for slash, chords
     if (degree.includes('/')) {
       const bassDegree = degree[degree.indexOf('/') + 1];
-      const bass = this.keyScale[bassDegree - 1];
+      const bass = bassDegree ? this.keyScale[bassDegree - 1] : '-';
       return `${chordRoot}${chordType}/${bass}`;
     }
 
