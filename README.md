@@ -25,10 +25,10 @@ import Nashville from 'nashville';
 
 const nashville = new Nashville('G major');
 
-console.log(nashville.key); // => 'G major'
-console.log(nashville.keyRoot); // => 'G'
-console.log(nashville.keyType); // => 'major'
-console.log(nashville.keyScale); // => [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ]
+nashville.key; // => 'G major'
+nashville.keyRoot; // => 'G'
+nashville.keyType; // => 'major'
+nashville.keyScale; // => [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ]
 ```
 
 ### Get a chord from a NNS degree
@@ -37,10 +37,10 @@ import Nashville from 'nashville';
 
 const nashville = new Nashville('G major');
 
-console.log(nashville.getChord(5)); // => 'D'
-console.log(nashville.getChord('5/7')); // => 'D/F#'
-console.log(nashville.getChord('5-')); // => 'Dmin'
-console.log(nashville.getChord('5o')); // => 'Ddim'
+nashville.getChord(5); // => 'D'
+nashville.getChord('5/7'); // => 'D/F#'
+nashville.getChord('5-'); // => 'Dmin'
+nashville.getChord('5o'); // => 'Ddim'
 ```
 
 ### Get a chords from a NNS degree sequence
@@ -49,8 +49,8 @@ import Nashville from 'nashville';
 
 const nashville = new Nashville('G major');
 
-console.log(nashville.getChords([1, 4, 5, 1])); // => [ 'G', 'C', 'D', 'G' ]
-console.log(nashville.getChords(['1', '5/7', '4', '2', '1', '7'])); // => [ 'G', 'D/F#', 'C', 'Am', 'G', 'F#dim' ]
+nashville.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
+nashville.getChords(['1', '5/7', '4', '2', '1', '7']); // => [ 'G', 'D/F#', 'C', 'Am', 'G', 'F#dim' ]
 ```
 
 ### Change key
@@ -59,10 +59,10 @@ import Nashville from 'nashville';
 
 const nashville = new Nashville('G major');
 
-console.log(nashville.getChords([1, 4, 5, 1])); // => [ 'G', 'C', 'D', 'G' ]
+nashville.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
 
 nashville.key('Eb mixolydian'); // updates key, keyRoot, keyType, and keyScale
-console.log(nashville.getChords([1, 4, 5, 1])); // => [ 'Eb', 'Ab', 'Bbm', 'Eb' ]
+nashville.getChords([1, 4, 5, 1]); // => [ 'Eb', 'Ab', 'Bbm', 'Eb' ]
 ```
 
 ### Degrees:
