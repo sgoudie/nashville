@@ -1,19 +1,23 @@
-const flatCheck = require('../src/lib/flat-check');
+const Nashville = require('../index');
 
 describe('flatCheck', () => {
   test('is true for F', () => {
-    expect(flatCheck('F')).toBe(true);
+    const nashville = new Nashville('F major');
+    expect(nashville.flatCheck()).toBe(true);
   });
 
   test('is true for Eb', () => {
-    expect(flatCheck('Eb')).toBe(true);
+    const nashville = new Nashville('Eb major');
+    expect(nashville.flatCheck()).toBe(true);
   });
 
   test('is false for D', () => {
-    expect(flatCheck('D')).toBe(false);
+    const nashville = new Nashville('D major');
+    expect(nashville.flatCheck()).toBe(false);
   });
 
   test('is false for G#', () => {
-    expect(flatCheck('G#')).toBe(false);
+    const nashville = new Nashville('G# major');
+    expect(nashville.flatCheck()).toBe(false);
   });
 });
