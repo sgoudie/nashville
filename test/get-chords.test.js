@@ -1,21 +1,19 @@
-const getChords = require('../src/get-chords');
+const Nashville = require('../index');
 
 describe('getChords', () => {
-  test('degrees in G major', () => {
-    const scale = ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G'];
-    const degrees = ['6-', '5/7', '1', '4'];
-    const correctSequence = ['Em', 'D/F#', 'G', 'C'];
+  test('sequence in G major', () => {
+    const nashville = new Nashville('G major');
+    const sequence = ['6-', '5/7', '1', '4'];
+    const correctChords = ['Em', 'D/F#', 'G', 'C'];
 
-    const chords = getChords({scale, degrees, scaleType: 'major'});
-    expect(chords).toEqual(correctSequence);
+    expect(nashville.getChords(sequence)).toEqual(correctChords);
   });
 
   test('degrees in Eb mixolydian', () => {
-    const scale = ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb'];
-    const degrees = ['6-', '5/7', '1', '4'];
-    const correctSequence = ['Cm', 'Bbm/Db', 'Eb', 'Ab'];
+    const nashville = new Nashville('Eb mixolydian');
+    const sequence = ['6-', '5/7', '1', '4'];
+    const correctChords = ['Cm', 'Bbm/Db', 'Eb', 'Ab'];
 
-    const chords = getChords({scale, degrees, scaleType: 'mixolydian'});
-    expect(chords).toEqual(correctSequence);
+    expect(nashville.getChords(sequence)).toEqual(correctChords);
   });
 });
