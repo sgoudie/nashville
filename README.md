@@ -23,46 +23,46 @@ var Nashville = require('nashville');
 ```js
 import Nashville from 'nashville';
 
-const nashville = new Nashville('G major');
+const song = new Nashville('G major');
 
-nashville.key; // => 'G major'
-nashville.keyRoot; // => 'G'
-nashville.keyType; // => 'major'
-nashville.keyScale; // => [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ]
+song.key; // => 'G major'
+song.keyRoot; // => 'G'
+song.keyType; // => 'major'
+song.keyScale; // => [ 'G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G' ]
 ```
 
 ### Get a chord from a NNS degree
 ```js
 import Nashville from 'nashville';
 
-const nashville = new Nashville('G major');
+const song = new Nashville('G major');
 
-nashville.getChord(5); // => 'D'
-nashville.getChord('5/7'); // => 'D/F#'
-nashville.getChord('5-'); // => 'Dmin'
-nashville.getChord('5o'); // => 'Ddim'
+song.getChord(5); // => 'D'
+song.getChord('5/7'); // => 'D/F#'
+song.getChord('5-'); // => 'Dmin'
+song.getChord('5o'); // => 'Ddim'
 ```
 
 ### Get a chords from a NNS degree sequence
 ```js
 import Nashville from 'nashville';
 
-const nashville = new Nashville('G major');
+const song = new Nashville('G major');
 
-nashville.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
-nashville.getChords(['1', '5/7', '4', '2', '1', '7']); // => [ 'G', 'D/F#', 'C', 'Am', 'G', 'F#dim' ]
+song.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
+song.getChords(['1', '5/7', '4', '2', '1', '7']); // => [ 'G', 'D/F#', 'C', 'Am', 'G', 'F#dim' ]
 ```
 
 ### Change key
 ```js
 import Nashville from 'nashville';
 
-const nashville = new Nashville('G major');
+const song = new Nashville('G major');
 
-nashville.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
+song.getChords([1, 4, 5, 1]); // => [ 'G', 'C', 'D', 'G' ]
 
-nashville.key('Eb mixolydian'); // updates key, keyRoot, keyType, and keyScale
-nashville.getChords([1, 4, 5, 1]); // => [ 'Eb', 'Ab', 'Bbm', 'Eb' ]
+song.key('Eb mixolydian'); // updates key, keyRoot, keyType, and keyScale
+song.getChords([1, 4, 5, 1]); // => [ 'Eb', 'Ab', 'Bbm', 'Eb' ]
 ```
 
 ### Degrees:
