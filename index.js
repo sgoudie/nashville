@@ -139,9 +139,6 @@ class Nashville {
       chordRoot = this.getNoteFromIndex(noteIndex + accidental)
     }
 
-    // Check for 7th / extensions
-    // Check for sus
-
     // Check for forcing of m or dim
     const { triads } = scaleLib[this.keyType]
     let chordType
