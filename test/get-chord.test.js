@@ -40,4 +40,24 @@ describe('getChord', () => {
     const song = new Nashville('G major')
     expect(song.getChord('bb5')).toBe('C')
   })
+  // Testing cycling back round note array
+  test('flat 5 in F major', () => {
+    const song = new Nashville('F major')
+    expect(song.getChord('b5')).toBe('B')
+  })
+
+  test('sharp 5 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('#5')).toBe('D#')
+  })
+
+  test('double sharp 5 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('##5')).toBe('E')
+  })
+  // Testing cycling back round note array
+  test('sharp 5 in E major', () => {
+    const song = new Nashville('E major')
+    expect(song.getChord('#5')).toBe('C')
+  })
 })

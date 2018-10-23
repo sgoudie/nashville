@@ -27,16 +27,22 @@ class Nashville {
     this.key = key
   }
 
-  getScale () {
+  getNoteFromIndex (index) {
     const notes = this.flatCheck() ? noteLabels.flats : noteLabels.sharps
+    if (index >= notes.length) index = index - notes.length
+    else if (index < 0) index = notes.length + index
+    return notes[index]
+  }
+
+  getScale () {
     const { intervals } = scaleLib[this.keyType]
+    const notes = this.flatCheck() ? noteLabels.flats : noteLabels.sharps
     const scale = [this.keyRoot]
     let lastIndex = notes.indexOf(this.keyRoot)
 
     intervals.forEach((int) => {
       let index = lastIndex + int
-      if (index >= notes.length) index = index - notes.length
-      scale.push(notes[index])
+      scale.push(this.getNoteFromIndex(index))
       lastIndex = index
     })
     // Set the scale before returning
@@ -66,42 +72,33 @@ class Nashville {
       chordDegree = degree
     }
 
-    // Check for accidentals (RESEARCH if chord triad needs to change)
-    // Accidentals
+    // Set accidentals and santise the chordDegree string
     if (chordDegree.includes('b')) {
       accidental = chordDegree.includes('bb') ? -2 : -1
       // Remove b from chordDegree
-      chordDegree.replace('b', '')
+      chordDegree = chordDegree.replace(/b/g, '')
     }
     if (chordDegree.includes('#')) {
       accidental = chordDegree.includes('##') ? 2 : 1
       // Remove # from chordDegree
-      chordDegree.replace('#', '')
+      chordDegree = chordDegree.replace(/#/g, '')
     }
 
-    // Check triad for root
-    const { triads } = scaleLib[this.keyType]
-
-    console.log(chordDegree)
+    // SET CHORD
     chordRoot = this.keyScale[chordDegree[0] - 1]
-
-    if (accidental < 0) {
-      console.log(accidental)
+    // Handle accidentals
+    if (chordRoot && accidental !== 0) {
       const notes = this.flatCheck() ? noteLabels.flats : noteLabels.sharps
       const noteIndex = notes.indexOf(chordRoot)
-      console.log(chordRoot)
-      console.log(noteIndex)
-      const flattenedIndex = noteIndex + accidental
-      console.log(flattenedIndex)
-      chordRoot = notes[flattenedIndex]
+      chordRoot = this.getNoteFromIndex(noteIndex + accidental)
     }
-    // Set chord
 
     // Check for forcing of m or dim
     // Check for 7th / extensions
     // Check for sus
     // Add type change
 
+    const { triads } = scaleLib[this.keyType]
     // Force minor
     if (chordDegree.includes('-') || triads[chordDegree[0] - 1] === 'min') {
       chordType = 'm' // 'm' for minor
