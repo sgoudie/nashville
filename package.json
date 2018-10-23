@@ -1,7 +1,7 @@
 {
   "name": "nashville",
   "version": "1.2.0",
-  "description": "Nashville Number System (NNS) parsed to chords",
+  "description": "Convert Nashville Number System (NNS) to chords",
   "author": "Samuel Goudie <hello@sgoudie.com>",
   "license": "MIT",
   "repository": "sgoudie/nashville",
