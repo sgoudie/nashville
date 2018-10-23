@@ -60,4 +60,44 @@ describe('getChord', () => {
     const song = new Nashville('E major')
     expect(song.getChord('#5')).toBe('C')
   })
+
+  test('5 maj 7 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(maj7)')).toBe('Dmaj7')
+  })
+
+  test('5 dominant 7 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(7)')).toBe('D7')
+  })
+
+  test('5 min 7 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5-(7)')).toBe('Dm7')
+  })
+
+  test('5 9 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(9)')).toBe('D9')
+  })
+
+  test('5 13 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(13)')).toBe('D13')
+  })
+
+  test('5 add9 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(+9)')).toBe('Dadd9')
+  })
+
+  test('5 add13 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(+13)')).toBe('Dadd13')
+  })
+
+  test('5 sus2 in G major', () => {
+    const song = new Nashville('G major')
+    expect(song.getChord('5(s2)')).toBe('Dsus2')
+  })
 })

@@ -84,13 +84,31 @@ song.getChord('#5') //=> D#
 song.getChord('##5') //=> E
 ```
 
+### Sevenths, extensions & additions
+**1.3.0** comes with support for extensions & additions. To prevent confusion between roots and extensions, wrap the extension parentheses.
+
+```js
+const song = new Nashville('G major')
+// Sevenths
+song.getChord(5) //=> D
+song.getChord('5(maj7)') //=> Dmaj7
+song.getChord('5(7)') //=> D7
+song.getChord('5-(7)') //=> Dm7
+// Extensions
+song.getChord('5(5)' //=> D5
+song.getChord('5(9)' //=> D9
+song.getChord('5(maj13)' //=> Dmaj13
+song.getChord('5(13)' //=> D13
+song.getChord('5(+9)' //=> Dadd9
+song.getChord('5(s2)' //=> sus2
+song.getChord('5(s4)' //=> sus4
+```
+
 ### Key Types
 - scales: `major` and `minor`
 - modes: `ionian`, `dorian`, `phrygian`, `lydian`, `mixolydian`, `aeolian`, and `locrian`
 
 ## To-do list
-- 7ths
-- Extensions / additions (`9, sus2, 13` etc)
 - Capo
 - Degree from chord
 - Workout triads from scale

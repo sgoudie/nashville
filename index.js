@@ -50,24 +50,22 @@ class Nashville {
     return scale
   }
 
-  getChord (degree) {
-    if (typeof degree === 'number') degree = degree.toString()
-    if (typeof degree !== 'string') throw new TypeError(`Invalid degree: ${degree} is a ${typeof degree} - must be a string`)
-
-    let bass
+  getDegreeAttributes (degree) {
     let bassDegree
     let chordDegree
-    let chordRoot
+    let isSlash = false
     let accidental = 0
-    let chordType = ''
+    let extension = ''
+    let sus = 0
+    let add = 0
 
     // Check for slash chord first and seperate out the bass
     if (degree.includes('/')) {
       const splitDegree = degree.split('/')
       chordDegree = splitDegree[0]
       bassDegree = splitDegree[1]
+      isSlash = true
       // TODO: Check accidentals on the bassDegree
-      bass = bassDegree ? this.keyScale[bassDegree - 1] : '-'
     } else {
       chordDegree = degree
     }
@@ -84,8 +82,51 @@ class Nashville {
       chordDegree = chordDegree.replace(/#/g, '')
     }
 
+    // Set extension + sus
+    if (chordDegree.includes('(')) {
+      let extBlock = chordDegree.split('(')[1]
+      // Handle sus
+      if (extBlock.includes('s')) {
+        sus = extBlock[extBlock.indexOf('s') + 1]
+      }
+      // Handle add
+      if (extBlock.includes('+')) {
+        const addDegree = extBlock[extBlock.indexOf('+') + 1]
+        // Support for add11 and add 13
+        add = addDegree === '1' ? `${extBlock[extBlock.indexOf('+') + 1]}${extBlock[extBlock.indexOf('+') + 2]}` : addDegree
+      }
+      // Handle major 7th
+      if (extBlock.includes('maj')) {
+        const extensionDegree = extBlock[extBlock.indexOf('maj') + 'maj'.length]
+        // Support for add11 and add 13
+        extension = `maj${extensionDegree === '1' ? `${extBlock[extBlock.indexOf('+') + 'maj'.length]}${extBlock[extBlock.indexOf('+') + ('maj'.length + 1)]}` : extensionDegree}`
+      } else if (!isNaN(Number(extBlock[0]))) {
+        extension = extBlock[0] === '1' ? `${extBlock[extBlock.indexOf('+') + 1]}${extBlock[extBlock.indexOf('+') + 2]}` : extBlock[0]
+      }
+      // Remove () section from chordDegree
+      chordDegree = chordDegree.split('(')[0]
+    }
+
+    return { bassDegree, chordDegree, isSlash, accidental, extension, sus, add }
+  }
+
+  getChord (degree) {
+    if (typeof degree === 'number') degree = degree.toString()
+    if (typeof degree !== 'string') throw new TypeError(`Invalid degree: ${degree} is a ${typeof degree} - must be a string`)
+
+    const {
+      bassDegree,
+      chordDegree,
+      isSlash,
+      accidental,
+      extension,
+      sus,
+      add
+    } = this.getDegreeAttributes(degree)
+
     // SET CHORD
-    chordRoot = this.keyScale[chordDegree[0] - 1]
+    const bassRoot = bassDegree ? this.keyScale[bassDegree - 1] : '-'
+    let chordRoot = this.keyScale[chordDegree[0] - 1]
     // Handle accidentals
     if (chordRoot && accidental !== 0) {
       const notes = this.flatCheck() ? noteLabels.flats : noteLabels.sharps
@@ -93,12 +134,12 @@ class Nashville {
       chordRoot = this.getNoteFromIndex(noteIndex + accidental)
     }
 
-    // Check for forcing of m or dim
     // Check for 7th / extensions
     // Check for sus
-    // Add type change
 
+    // Check for forcing of m or dim
     const { triads } = scaleLib[this.keyType]
+    let chordType
     // Force minor
     if (chordDegree.includes('-') || triads[chordDegree[0] - 1] === 'min') {
       chordType = 'm' // 'm' for minor
@@ -108,11 +149,13 @@ class Nashville {
       chordType = 'dim' // 'dim' for diminished
     }
 
-    if (bass) {
-      return `${chordRoot}${chordType}/${bass}`
+    const chord = `${chordRoot}${chordType || ''}${extension || ''}${add ? `add${add}` : ''}${sus ? `sus${sus}` : ''}`
+
+    if (isSlash) {
+      return `${chord}/${bassRoot}`
     }
 
-    return chordRoot ? `${chordRoot}${chordType}` : '-'
+    return chordRoot ? chord : '-'
   }
 
   getChords (sequence) {
