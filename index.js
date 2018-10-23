@@ -85,23 +85,28 @@ class Nashville {
     // Set extension + sus
     if (chordDegree.includes('(')) {
       let extBlock = chordDegree.split('(')[1]
+      // Support for add11 and add 13
+      const formatExtensionNumber = (index) => {
+        const firstDigit = extBlock[index]
+        // You never extend or alter with a 1
+        return firstDigit === '1' ? `${firstDigit}${extBlock[index + 1]}` : firstDigit
+      }
       // Handle sus
       if (extBlock.includes('s')) {
         sus = extBlock[extBlock.indexOf('s') + 1]
       }
       // Handle add
       if (extBlock.includes('+')) {
-        const addDegree = extBlock[extBlock.indexOf('+') + 1]
-        // Support for add11 and add 13
-        add = addDegree === '1' ? `${extBlock[extBlock.indexOf('+') + 1]}${extBlock[extBlock.indexOf('+') + 2]}` : addDegree
+        const extIndex = extBlock.indexOf('+') + 1
+        add = formatExtensionNumber(extIndex)
       }
       // Handle major 7th
       if (extBlock.includes('maj')) {
-        const extensionDegree = extBlock[extBlock.indexOf('maj') + 'maj'.length]
-        // Support for add11 and add 13
-        extension = `maj${extensionDegree === '1' ? `${extBlock[extBlock.indexOf('+') + 'maj'.length]}${extBlock[extBlock.indexOf('+') + ('maj'.length + 1)]}` : extensionDegree}`
+        const extIndex = extBlock.indexOf('maj') + 'maj'.length
+        extension = `maj${formatExtensionNumber(extIndex)}`
       } else if (!isNaN(Number(extBlock[0]))) {
-        extension = extBlock[0] === '1' ? `${extBlock[extBlock.indexOf('+') + 1]}${extBlock[extBlock.indexOf('+') + 2]}` : extBlock[0]
+        const extIndex = 0
+        extension = formatExtensionNumber(extIndex)
       }
       // Remove () section from chordDegree
       chordDegree = chordDegree.split('(')[0]
