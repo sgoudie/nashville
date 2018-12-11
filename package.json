@@ -1,6 +1,6 @@
 {
   "name": "nashville",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Convert Nashville Number System (NNS) to chords",
   "author": "Samuel Goudie <hello@sgoudie.com>",
   "license": "MIT",
